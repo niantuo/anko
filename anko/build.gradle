@@ -38,9 +38,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    api 'com.github.niantuo:SlideMenu:v1.2.2'
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'
-    api 'com.kyleduo.switchbutton:library:2.0.0'
+    api ('com.github.niantuo:SlideMenu:v1.2.2'){
+        exclude(group: 'com.android.support')
+    }
+    api ('com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'){
+        exclude(group: 'com.android.support')
+    }
+    api ('com.kyleduo.switchbutton:library:2.0.0'){
+        exclude(group: 'com.android.support')
+    }
     //anko布局
     api "org.jetbrains.anko:anko:$anko_version"
     // Design
@@ -53,8 +59,7 @@ dependencies {
 
     /*material风格的弹框*/
     api('com.afollestad.material-dialogs:core:0.9.4.1') {
-        exclude(group: 'com.android.support', module: 'support-v13')
-        exclude(group: 'com.android.support', module: 'recyclerview-v7')
+        exclude(group: 'com.android.support')
     }
 
     compileOnly 'com.android.support:appcompat-v7:27.1.1'
