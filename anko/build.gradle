@@ -10,10 +10,10 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -34,7 +34,7 @@ repositories {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -55,7 +55,7 @@ dependencies {
     // RecyclerView-v7
     api "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
     api "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$anko_version"
-    api 'com.google.code.gson:gson:2.8.2'
+    api 'com.google.code.gson:gson:2.8.4'
 
     /*material风格的弹框*/
     api('com.afollestad.material-dialogs:core:0.9.4.1') {
