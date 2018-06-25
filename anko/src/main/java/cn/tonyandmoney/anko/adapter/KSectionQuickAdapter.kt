@@ -16,11 +16,41 @@ import org.jetbrains.anko.AnkoContext
 class KSectionQuickAdapter<T> : BaseSectionQuickAdapter<SectionEntity<T>,
         BaseViewHolder>(0, 0, mutableListOf()) {
 
-    var dataBind: ((BaseViewHolder, T) -> Unit)? = null
+    private var dataBind: ((BaseViewHolder, T) -> Unit)? = null
     private var headDataBind: ((BaseViewHolder, SectionEntity<T>) -> Unit)? = null
 
     private lateinit var mSectionHeaderView: (AnkoContext<Context>) -> View
     private lateinit var mEntityItemView: (AnkoContext<Context>) -> View
+
+
+    fun setEntityDataBind(callback: (BaseViewHolder, T) -> Unit): KSectionQuickAdapter<T> {
+        this.dataBind = callback
+        return this
+    }
+
+    fun setHeaderDataBind(callback: (BaseViewHolder, SectionEntity<T>) -> Unit): KSectionQuickAdapter<T> {
+        this.headDataBind = callback
+        return this
+    }
+
+    fun setHeaderItemView(view: AnkoContext<Context>.() -> Unit): KSectionQuickAdapter<T> {
+        mSectionHeaderView = {
+            it.apply {
+                view(it)
+            }.view
+        }
+        return this
+    }
+
+    fun setEntityItemView(ankoView: AnkoContext<Context>.() -> Unit): KSectionQuickAdapter<T> {
+        mEntityItemView = {
+            it.apply {
+                ankoView(it)
+            }.view
+        }
+        return this
+    }
+
 
     override fun convert(helper: BaseViewHolder, item: SectionEntity<T>) {
         dataBind?.invoke(helper, item.t)
@@ -28,14 +58,6 @@ class KSectionQuickAdapter<T> : BaseSectionQuickAdapter<SectionEntity<T>,
 
     override fun convertHead(helper: BaseViewHolder, item: SectionEntity<T>) {
         headDataBind?.invoke(helper, item)
-    }
-
-    fun setHeaderItemView(ankoView: ((AnkoContext<Context>) -> View)) {
-        mSectionHeaderView = ankoView
-    }
-
-    fun setEntityItemView(ankoView: ((AnkoContext<Context>) -> View)) {
-        mEntityItemView = ankoView
     }
 
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
