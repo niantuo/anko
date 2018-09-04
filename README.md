@@ -30,7 +30,7 @@
 
         group: 'com.android.support'
 
-### v1.0.2 2018/9/4
+### v1.0.6 2018/9/4
  - 升级 kotlin版本为1.2.50
  - 修复kotlin引入版本
  - 去除kotlin 版本依赖
